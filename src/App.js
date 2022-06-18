@@ -20,18 +20,18 @@ function App() {
     // the ratio is 50% water to flour and 30% starter to flour
     // TODO figure out why the values are always 0
     // known: flour is a number type and is changed propperly
-    if(flour != 0){
-
-      setWater = (flour * 0.5)
-      setStarter = (flour * 0.3)
-      setSalt = (flour * 0.01)
+    if(flour !== 0){
+      setWater(flour * 0.5)
+      setStarter(flour * 0.3)
+      setSalt(flour * 0.01)
     }
+  }
 
-    console.log(flour)
-    
-    // console.log(water)
-    // console.log(starter)
-    // console.log(salt)
+  function clearAmt(){
+    setFlour(0)
+    setWater(0)
+    setStarter(0)
+    setSalt(0)
 
   }
   function handleChange(event) {
@@ -41,9 +41,8 @@ function App() {
     // check for valid input
     if(!isNaN(value))
 
-      if(inputName == "flour"){
+      if(inputName === "flour"){
         setFlour(parseInt(value))
-        console.log(typeof(flour))
         return
       }
     else{
@@ -62,14 +61,14 @@ function App() {
 
         <div className="flour-amt">
           <p>Input flour g </p>
-          <input name="flour" type="text" onChange={ handleChange } />
+          <input name="flour" type="text" onChange={ handleChange }></input>
         </div>
 
         <div className='water-amt'>water amt: { water }</div>
         <div className='starter-amt'> starter amt: { starter }</div>
         <div className='salt-amt'> salt amt: { salt }</div>
         
-        {/* <button></button> */}
+        <button onClick={ clearAmt }>clear </button>
       </div>
       
       </header>

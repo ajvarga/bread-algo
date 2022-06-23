@@ -1,9 +1,6 @@
 import './App.css';
 import React, { useState, useEffect} from 'react';
 
-// what i want to do is for when one of the fields is filled, the other fields will auto fill based on a formula
-// TODO error check for if 0 and backspace is pressed
-
 function App() {
   let [flour, setFlour] = useState(0)
   let [water, setWater] = useState(0)
@@ -12,13 +9,11 @@ function App() {
 
   useEffect(() => {
     // update the other fields on keychange
-    flourChange(flour)
-    // console.log("useEffect ran")
-    if(flour < 0){
-      setFlour(0)
-    }
-
-  }, [flour]);
+    // flourChange(flour)
+    // waterChange(water)
+    // starterChange(starter)
+    saltChange(salt)
+  }, [salt]);
 
   function flourChange(flour){
     // the ratio is 50% water to flour and 30% starter to flour
@@ -26,31 +21,100 @@ function App() {
       setWater(flour * 0.5)
       setStarter(flour * 0.3)
       setSalt(flour * 0.01)
+    }else{
+      resetVal()
     }
   }
 
-  function clearAmt(){
-    setFlour(0)
-    setWater(0)
-    setStarter(0)
-    setSalt(0)
-
+  function waterChange(water){
+    if(water !== 0){
+      setStarter(water * 0.7)
+      setFlour(water * 2)
+      setSalt(water * .01)
+    }else{
+      resetVal()
+    }
   }
+
+  function starterChange(starter){
+    if(starter !== 0){
+      setFlour(Math.round(starter * 3.333333))
+      setWater(Math.round(starter * 1.67))
+      setSalt(Math.round(starter * .02))
+    }else{
+      resetVal()
+    }
+  }
+
+  function saltChange(salt){
+    if(salt !== 0){
+      setFlour(salt * 200)
+      setWater(salt * 100)
+      setStarter(salt * 60)
+    }else{
+      resetVal()
+    }
+  }
+
   function handleChange(event) {
     let inputName = event.target.name
     let value = event.target.value
     console.log(event)
-    // check for valid input
-    if(!isNaN(value))
-      if(inputName === "flour"){
-        setFlour(parseInt(value))
-        return
-      }
+    // check for valid input{
+    if(!isNaN(value)){
+      setAmounts(inputName, value)
+    }
     else{
       console.log("invalid input, please input a number")
     }
   }
 
+  function setAmounts(name, value){
+    if(name === "flour"){
+      if(value.trim().length !== 0){
+        setFlour(parseInt(value))
+        return
+      }
+      else{
+        setFlour(0)
+      }
+    }else if(name === "water"){
+      if(value.trim().length !== 0){
+        setWater(parseInt(value))
+        return
+      }
+      else{
+        setWater(0)
+      }
+
+    }else if(name ==="salt"){
+      if(value.trim().length !== 0){
+        setSalt(parseInt(value))
+        return
+      }
+      else{
+        setSalt(0)
+      }
+
+    }else if(name ==="starter"){
+      if(value.trim().length !== 0){
+        setStarter(parseInt(value))
+        return
+      }
+      else{
+        setStarter(0)
+      }
+    }
+  }
+
+  function resetVal(){
+    setFlour(0)
+    setWater(0)
+    setStarter(0)
+    setSalt(0)
+
+    console.log("all fields empty")
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -77,7 +141,7 @@ function App() {
           <input name="salt" type="text" value={ salt } onChange={ handleChange }></input>
         </div>
         
-        <button onClick={ clearAmt }>clear </button>
+        <button onClick={ resetVal }>clear </button>
       </div>
       
       </header>

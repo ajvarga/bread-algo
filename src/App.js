@@ -7,13 +7,32 @@ function App() {
   let [starter, setStarter] = useState(0)
   let [salt, setSalt] = useState(0)
 
+  let [name, setName] = useState("")
+
+
+  // TODO, have all fields active for typing
   useEffect(() => {
-    // update the other fields on keychange
     // flourChange(flour)
     // waterChange(water)
     // starterChange(starter)
-    saltChange(salt)
-  }, [salt]);
+    // saltChange(salt)
+    handleSwitch(name)
+  }, [name]);
+
+  function handleSwitch(name){
+    if(name === "flour"){
+      flourChange(flour)
+    }else if(name === "water"){
+      waterChange(water)
+    }else if(name === "starter"){
+      starterChange(starter)
+    }else if(name === "salt"){
+      saltChange(salt)
+    }
+    // reset field so useEffect will occur
+    setName("")
+
+  }
 
   function flourChange(flour){
     // the ratio is 50% water to flour and 30% starter to flour
@@ -21,8 +40,6 @@ function App() {
       setWater(flour * 0.5)
       setStarter(flour * 0.3)
       setSalt(flour * 0.01)
-    }else{
-      resetVal()
     }
   }
 
@@ -30,9 +47,7 @@ function App() {
     if(water !== 0){
       setStarter(water * 0.7)
       setFlour(water * 2)
-      setSalt(water * .01)
-    }else{
-      resetVal()
+      setSalt(water * .02)
     }
   }
 
@@ -41,8 +56,6 @@ function App() {
       setFlour(Math.round(starter * 3.333333))
       setWater(Math.round(starter * 1.67))
       setSalt(Math.round(starter * .02))
-    }else{
-      resetVal()
     }
   }
 
@@ -51,14 +64,15 @@ function App() {
       setFlour(salt * 200)
       setWater(salt * 100)
       setStarter(salt * 60)
-    }else{
-      resetVal()
     }
   }
 
   function handleChange(event) {
+
     let inputName = event.target.name
     let value = event.target.value
+
+    setName(inputName)
     console.log(event)
     // check for valid input{
     if(!isNaN(value)){
@@ -68,11 +82,12 @@ function App() {
       console.log("invalid input, please input a number")
     }
   }
-
+ 
   function setAmounts(name, value){
     if(name === "flour"){
       if(value.trim().length !== 0){
         setFlour(parseInt(value))
+        // flourChange(flour)
         return
       }
       else{
@@ -81,6 +96,7 @@ function App() {
     }else if(name === "water"){
       if(value.trim().length !== 0){
         setWater(parseInt(value))
+        // waterChange(water)
         return
       }
       else{
@@ -90,6 +106,7 @@ function App() {
     }else if(name ==="salt"){
       if(value.trim().length !== 0){
         setSalt(parseInt(value))
+        // saltChange(salt)
         return
       }
       else{
@@ -99,6 +116,7 @@ function App() {
     }else if(name ==="starter"){
       if(value.trim().length !== 0){
         setStarter(parseInt(value))
+        // starterChange(starter)
         return
       }
       else{

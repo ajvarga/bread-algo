@@ -6,7 +6,7 @@ export default function Sourdough(props) {
     let [water, setWater] = useState(0)
     let [starter, setStarter] = useState(0)
     let [salt, setSalt] = useState(0)
-  
+
     let [name, setName] = useState("")
   
     // TODO, have all fields active for typing

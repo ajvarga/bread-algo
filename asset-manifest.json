@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/bread-algo/static/css/main.38be36b0.css",
+    "main.js": "/bread-algo/static/js/main.f8875a0e.js",
+    "static/js/787.79142968.chunk.js": "/bread-algo/static/js/787.79142968.chunk.js",
+    "index.html": "/bread-algo/index.html",
+    "main.38be36b0.css.map": "/bread-algo/static/css/main.38be36b0.css.map",
+    "main.f8875a0e.js.map": "/bread-algo/static/js/main.f8875a0e.js.map",
+    "787.79142968.chunk.js.map": "/bread-algo/static/js/787.79142968.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.38be36b0.css",
+    "static/js/main.f8875a0e.js"
+  ]
+}

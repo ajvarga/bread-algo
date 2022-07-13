@@ -134,25 +134,27 @@ export default function Sourdough(props) {
     <div className='main' class="col d-flex justify-content-center">
         <Card className ="formula">
             <Card.Header>Just throw in how much flour/water/starter you got and we'll do the rest!</Card.Header>
+            
             <Card.Body>
                 <div className="flour-amt">
-                <p>Input flour g </p>
-                <input name="flour" type="text" value={ flour } onChange={ handleChange }></input>
+                    <p>Input flour g </p>
+                    <input name="flour" type="text" value={ flour } onChange={ handleChange }></input>`
                 </div>
 
                 <div className="water-amt">
-                <p>Input water g </p>
-                <input name="water" type="text" value={ water } onChange={ handleChange }></input>
+                    <p>Input water g </p>
+                    <input name="water" type="text" value={ water } onChange={ handleChange }></input>
                 </div>
                 <div className="starter-amt">
-                <p>Input starter g </p>
-                <input name="starter" type="text" value={ starter } onChange={ handleChange }></input>
+                    <p>Input starter g </p>
+                    <input name="starter" type="text" value={ starter } onChange={ handleChange }></input>
                 </div>
                 
                 <div className="salt-amt">
-                <p>Input salt g </p>
-                <input name="salt" type="text" value={ salt } onChange={ handleChange }></input>
+                    <p>Input salt g </p>
+                    <input name="salt" type="text" value={ salt } onChange={ handleChange }></input>
                 </div>
+
                 <Button variant='secondary' onClick={ resetVal }>Clear</Button>
             </Card.Body>
             
